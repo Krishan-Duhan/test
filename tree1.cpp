@@ -7,8 +7,8 @@ struct Node {
     Node* left;
     Node* right;
     Node(){
-        this->value = (int)NULL;
-	left = right = NULL;
+        //this->value = (int)NULL;
+	//left = right = NULL;
     }
     Node(int x){
         this->value = x;
@@ -16,7 +16,7 @@ struct Node {
     }
 };
 
-//Function for Inorder traversal of a tree.
+//Function for Inorder traversal of a tree. [order of nodes: left -> center -> right]
 void printInorder(Node* troot){
     if(troot->left != NULL)
 	printInorder(troot->left);
@@ -25,7 +25,7 @@ void printInorder(Node* troot){
 	printInorder(troot->right);
 }
 
-//Function for Preorder traversal of a tree.
+//Function for Preorder traversal of a tree. [order of nodes: center -> left -> right]
 void printPreorder(Node * troot){
     cout << troot->value << "\t";
     if(troot->left != NULL)
@@ -34,7 +34,7 @@ void printPreorder(Node * troot){
 	printPreorder(troot->right);
 }
 
-//Function for Postorder traversal of a tree.
+//Function for Postorder traversal of a tree. [order of nodes: left -> right -> center]
 void printPostorder(Node *troot){
     if(troot->left != NULL)
 	printPostorder(troot->left);
@@ -45,14 +45,18 @@ void printPostorder(Node *troot){
 
 //Function to insert a given value in a given tree,as per binary search tree.
 void insert(int data,Node* troot){
-    Node *tmp;
+    cout << "Entering insert function..." << endl;
+    Node *tmp = new Node;
     tmp->value = data;
     tmp->left = NULL;
     tmp->right = NULL;
+    cout << "data to be inserted is: " << tmp->value << endl;
 
-    if(troot == NULL)
+    if(troot == NULL) {
+	cout << "It was an empty tree,so creating it." << endl;
         troot = tmp;
-        exit(1);
+        return;
+    }
     if(data < troot->value)
         insert(data,troot->left);
     if(data > troot->value)
@@ -80,9 +84,10 @@ int main(){
     printPostorder(root);
     cout << endl;
 
-    cout << "Checking insert function ..." << endl;
     insert(8,iroot);
-    printInorder(iroot);
+    cout << "iroot value inserted is:"  << iroot->value;
+    //printInorder(iroot);
+    //printPreorder(iroot);
     cout << endl;
 
     return 0;
