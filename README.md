@@ -1,2 +1,2 @@
 # test
-All my personal coding exercises of Data Structures.
+Few of my personal coding exercises of Data Structures.
